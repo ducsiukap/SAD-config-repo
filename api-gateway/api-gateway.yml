@@ -32,6 +32,21 @@ eureka:
   instance:
     prefer-ip-address: true
 
+# resilience
+resilience4j:
+  circuitbreaker:
+    instances:
+      default-cb:
+        failure-rate-threshold: 50
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 3
+  timelimiter:
+    instances:
+      default-cb:
+        timeout-duration: 5s
+
 management:
   endpoints:
     web:
