@@ -24,7 +24,16 @@ spring:
             #   + Service cũng thêm header
             # -> bị duplicate -> browser chặn
             - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
-
+          routes:
+            - id: category-service
+              uri: lb://category-service
+              predicates:
+                - Path=/api/categories/**, /api/catalogs/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: default-cb
+                    
 # resilience
 resilience4j:
   circuitbreaker:
