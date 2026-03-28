@@ -33,7 +33,17 @@ spring:
                 - name: CircuitBreaker
                   args:
                     name: default-cb
-                    
+
+          routes:
+            - id: product-service
+              uri: lb://product-service
+              predicates:
+                - Path=/api/products/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: default-cb
+
 # resilience
 resilience4j:
   circuitbreaker:
