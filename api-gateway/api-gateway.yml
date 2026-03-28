@@ -34,7 +34,6 @@ spring:
                   args:
                     name: default-cb
 
-          routes:
             - id: product-service
               uri: lb://product-service
               predicates:
