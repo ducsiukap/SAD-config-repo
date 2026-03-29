@@ -43,6 +43,15 @@ spring:
                   args:
                     name: default-cb
 
+            - id: analysis-service
+              uri: lb://analysis-service
+              predicates:
+                - Path=/api/analysis/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: default-cb
+
 # resilience
 resilience4j:
   circuitbreaker:
